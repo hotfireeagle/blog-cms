@@ -1,9 +1,12 @@
+@import './px.scss';
+
 * {
   margin: 0;
   padding: 0;
 }
 html, body {
   min-height: 100vh;
+  background: #f7f7f8;
 }
 .paddinglr15 {
   padding-left: 15px;
@@ -18,4 +21,11 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.flexg {
+  flex-grow: 1;
+}
+.appRightContainer {
+  min-height: 100vh;
+  margin-left: $menu-width;
 }

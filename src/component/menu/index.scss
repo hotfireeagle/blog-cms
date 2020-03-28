@@ -3,7 +3,7 @@
 @import '../../scss/px.scss';
 
 .menuComponentWrapper {
-  width: 260px;
+  width: $menu-width;
   height: 100vh;
   position: fixed;
   left: 0; top: 0;
@@ -13,8 +13,8 @@
   .blogTitle {
     font-size: 18px;
     font-weight: 600;
-    height: 60px;
-    line-height: 60px;
+    height: $top-bar-height;
+    line-height: $top-bar-height;
     text-align: center;
     border-bottom: $topbar-borderbottom;
   }

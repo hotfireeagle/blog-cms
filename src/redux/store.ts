@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux'
-import { pageIndex } from './page/index/reducer'
+import { pageIndex } from '../page/index/reducer'
 
 const reducers = combineReducers({
   pageIndex
@@ -8,5 +8,5 @@ const reducers = combineReducers({
 const store = createStore(reducers)
 
 export {
-  store
+  store,
 }

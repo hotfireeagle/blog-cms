@@ -2,18 +2,23 @@ import {
   TEST
 } from './action'
 
-interface InitialState {
-  count: number
+export type IPageIndexState = {
+  count: number,
 }
 
-const initState: InitialState = {
+interface IAction {
+  type: string,
+  [key: string]: any,
+}
+
+const initState: IPageIndexState = {
   count: 1
 }
 
-// FIXME: type check fix
-const pageIndex = (previousState=initState, action: any) => {
+const pageIndex = (previousState=initState, action: IAction) => {
   switch(action.type) {
     case TEST:
+      console.log(action.value)
       return { ...previousState, count: previousState.count + 1 }
     default:
       return previousState
@@ -21,5 +26,6 @@ const pageIndex = (previousState=initState, action: any) => {
 }
 
 export {
-  pageIndex
+  pageIndex,
 }
+// export type { IPageIndexState }
