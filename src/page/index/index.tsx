@@ -12,8 +12,7 @@ const IndexPageComponent: React.FC<IProps> = props => {
   return <h1 onClick={props.testActionCreator}>{props.count}</h1>
 }
 
-// FIXME: 这个类型需要修复一下
-const mapStateToProps = (storeState: IAppState, ownProps: any) => ({
+const mapStateToProps = (storeState: IAppState) => ({
   count: storeState.pageIndex.count,
 })
 
@@ -22,5 +21,5 @@ const mapDispatchToProps = { testActionCreator }
 const IndexPage = connect(mapStateToProps, mapDispatchToProps)(IndexPageComponent)
 
 export {
-  IndexPage
+  IndexPage,
 }
