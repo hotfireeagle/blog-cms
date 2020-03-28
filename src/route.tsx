@@ -6,9 +6,7 @@ import { Page404 } from './page/404'
 
 const AppRoute: React.FC<any> = () => (
   <Router>
-    <section className='leftMenuContainer'>
-      <Menu />
-    </section>
+    <Menu />
     <section className='appRightContainer'>
       <Switch>
         <Route exact path='/'>

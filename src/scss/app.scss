@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  min-height: 100vh;
+}
+.paddinglr15 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
