@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { message } from '../../component/message'
 import './index.scss'
 
 const Login: React.FC<any> = props => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => { message.success('这是一段测试内容') })
 
   return (
     <div className='loginComponentWrapper'>
