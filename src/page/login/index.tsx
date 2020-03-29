@@ -20,6 +20,7 @@ const Login: React.FC<any> = props => {
         </div>
         <button>登录</button>
       </div>
+      <div className='copyRight'>由前端React+后端Ｎest驱动</div>
     </div>
   )
 }
