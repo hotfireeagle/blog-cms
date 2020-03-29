@@ -1,0 +1,76 @@
+.loginComponentWrapper {
+  position: fixed;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background: rgb(251, 251, 251);
+  z-index: 3;
+  overflow: hidden;
+  .loginBody {
+    width: 310px;
+    height: 359px;
+    padding: 60px 25px;
+    background-color: #fff;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, .08);
+    border-radius: 3px;
+    margin: 100px auto auto auto;
+    position: relative;
+    justify-content: center;
+    color: rgba(0, 129, 198, 0.45);
+    .title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .inputRow {
+      width: 310px;
+      margin-bottom: 30px;
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+      input {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: rgba(0, 129, 198, 0.05);
+        border-radius: 3px;
+        color: rgba(0, 129, 198, 0.7);
+        font-size: 13px;
+        outline: none;
+        padding: 15px 20px;
+        border: none;
+      }
+    }
+    button {
+      display: inline-block;
+      width: 100%;
+      border: none;
+      color: #fff;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-weight: 700;
+      box-shadow: rgba(0, 129, 198, 0.45) 0px 2px 7px 0px;
+      padding: 0 15px;
+      border-radius: 3px;
+      cursor: pointer;
+      background-color: rgb(0, 129, 198);
+    }
+  }
+  .loginBody::before {
+    position: absolute;
+    content: '';
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    left: 50%; transform: translateX(-50%);
+    top: -50px;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, .07);
+    background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585471528693&di=d950165950379b3b87ad134f45feb2de&imgtype=0&src=http%3A%2F%2Fww1.sinaimg.cn%2Fthumb150%2Fe3eb4d35ly1fv2ylszb8vj20qn0gqq4a.jpg');
+    background-size: 100px 100px;
+    background-position: center;
+  }
+}
