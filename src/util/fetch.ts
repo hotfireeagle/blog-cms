@@ -1,13 +1,14 @@
 import { getToken } from './token'
 import { obj2str } from './tool'
 import { ApiCode } from '../constant/conf'
+import { message } from '../component/message'
 
 type HttpMethods = 'get' | 'GET' | 'post' | 'POST'
 
-type FunType = (a: string, b: HttpMethods, c: any) => Promise<any>
+type FunType = (api: string, method: HttpMethods, data: any) => Promise<any>
 
 interface IResponse {
-  code: ApiCode,
+  status: ApiCode,
   data: any,
   message: string,
   [key: string]: any
@@ -38,18 +39,18 @@ const fetchData: FunType = (url: string, method: HttpMethods, httpParams: any) =
       }
     }
     fetch(url, data).then(res => res.json())
-      .catch(err => {
-        
-      }) // TODO: 需要在这里进行弹窗
       .then((response: IResponse) => {
-        if (response.code === ApiCode.SUCCESS) {
+        if (response.status === ApiCode.SUCCESS) {
           resolve(response.data)
-        } else if (response.code === ApiCode.UNAUTH) { // TODO: 需要跳转到登录页面
+        } else if (response.status === ApiCode.UNAUTH) { // TODO: 需要跳转到登录页面
           
-        } else if (response.code === ApiCode.ERROR) { //　TODO: 报错
-
+        } else if (response.status === ApiCode.ERROR) {
+          message.error(response.message);
         }
-      }) // 在这里对响应数据做个处理
+      }).catch(err => {
+        message.error(`解析JSON发生错误-接口为${url}`)
+        reject(err)
+      })
   })
 }
 

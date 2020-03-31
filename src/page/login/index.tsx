@@ -1,27 +1,38 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { message } from '../../component/message'
+import { fetchData } from '../../util/fetch'
+import { saveToken } from '../../util/token'
 import './index.scss'
 
 const Login: React.FC<any> = props => {
 
-  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
   const [password, setPassword] = useState('')
+  const history = useHistory()
 
-  useEffect(() => { message.success('这是一段测试内容') })
+  const handleLogin = async () => {
+    const obj = { name, password }
+    const api = '/api/user/login'
+    const token = await fetchData(api, 'post', obj)
+    message.success('登录成功')
+    saveToken(token)
+    history.replace('/')
+  }
 
   return (
     <div className='loginComponentWrapper'>
       <div className='loginBody flexColumn'>
         <h4 className='title'>登录以继续</h4>
         <div className='inputRow'>
-          <label htmlFor='emailArea'>邮箱</label>
-          <input value={email} onChange={event => setEmail(event.target.value)} type='email' id='emailArea' />
+          <label htmlFor='nameArea'>账户</label>
+          <input value={name} onChange={event => setName(event.target.value)} type='name' id='nameArea' />
         </div>
         <div className='inputRow'>
           <label htmlFor='passwordArea'>密码</label>
           <input value={password} onChange={event => setPassword(event.target.value)} type='password' id='passwordArea' />
         </div>
-        <button>登录</button>
+        <button onClick={handleLogin}>登录</button>
       </div>
       <div className='copyRight'>由前端React+后端Ｎest驱动</div>
     </div>
