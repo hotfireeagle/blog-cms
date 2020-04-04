@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.scss'
 
-const Tag: React.FC<any> = (props) => {
+const Tag: React.FC<any> = () => {
   return (
     <div className='inputPageWrapper'>
 

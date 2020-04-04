@@ -8,7 +8,7 @@ const TopBarComponent: React.FC<any> = props => {
   </div>
 }
 
-const TopBar = TopBarComponent
+const TopBar = React.memo(TopBarComponent)
 
 export {
   TopBar,

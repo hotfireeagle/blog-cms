@@ -1,12 +1,13 @@
 import * as React from 'react'
-import { Provider } from 'react-redux'
+import { AppProvider } from './store/provider'
+// import { Provider } from 'react-redux'
 import { AppRoute } from './route'
-import { store } from './redux/store'
+// import { store } from './redux/store'
 
 const App: React.FC<any> = () => (
-  <Provider store={store}>
+  <AppProvider>
     <AppRoute />
-  </Provider>
+  </AppProvider>
 )
 
 export {
