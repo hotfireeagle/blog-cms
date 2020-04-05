@@ -1,17 +1,9 @@
 import * as actionObj from './action'
 import { obj2arr } from '../../util/tool'
+import { IndexPageStore } from './interface'
 
-export interface IState {
-  count: number
-}
-
-const initialState: IState = {
-  count: 1,
-}
-
-// FIXME: type约束
-const reducer = (prevState: IState = initialState, action: any) => {
-  switch(action.type) {
+const reducer = (prevState: IndexPageStore, action: any) => {
+  switch (action.type) {
     case actionObj.ADD:
       return { ...prevState, count: prevState.count + 1 }
     default:
@@ -19,11 +11,7 @@ const reducer = (prevState: IState = initialState, action: any) => {
   }
 }
 
-const pageIndex = {
+export const pageIndex = {
   reducer,
   actions: obj2arr(actionObj),
-}
-
-export {
-  pageIndex,
 }

@@ -1,8 +1,4 @@
 /**
-* 在这里封装关于token的存取逻辑
-*/
-
-/**
 * 将token存储到本地localStorage
 * @param token 
 */

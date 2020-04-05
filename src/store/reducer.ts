@@ -27,7 +27,6 @@ const combineReducers = (appReducers: AppReducers) => {
       const moduleName = modules[i]
       const moduleObj = appReducers[moduleName]
       const moduleActions = moduleObj.actions
-      console.log('wtf', action.type, moduleActions)
       if (moduleActions.includes(action.type)) {
         const prevModuleState = appStoreState[moduleName]
         const moduleReducer = moduleObj.reducer
@@ -39,10 +38,6 @@ const combineReducers = (appReducers: AppReducers) => {
   }
 }
 
-const reducer = combineReducers({
+export const reducer = combineReducers({
   pageIndex,
 })
-
-export {
-  reducer,
-}

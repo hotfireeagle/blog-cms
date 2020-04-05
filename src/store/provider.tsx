@@ -1,27 +1,21 @@
 import React, { useReducer } from 'react'
 import { reducer } from './reducer'
-import { storeState, IContext } from './state'
+import { defaultStoreState, IContext } from './state'
 import { AppContext } from './context'
 
 interface IProps {
   children: any,
 }
 
-const AppProvider: React.FC<IProps> = (props) => {
+export const AppProvider: React.FC<IProps> = (props) => {
 
-  const [appStore, dispatch] = useReducer(reducer, storeState)
+  const [appStore, dispatch] = useReducer(reducer, defaultStoreState)
 
   const appState: IContext = { appStore, dispatch }
-
-  console.error('wd')
 
   return (
     <AppContext.Provider value={appState}>
       {props.children}
     </AppContext.Provider>
   )
-}
-
-export {
-  AppProvider,
 }

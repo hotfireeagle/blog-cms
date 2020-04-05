@@ -7,36 +7,27 @@ import { Page404 } from './page/404'
 import { Login } from './page/login'
 import { Tag } from './page/tag'
 
-const AppRoute: React.FC<any> = () => {
-
-  console.error('wr')
-
-  return (
-    <Router>
-      <Menu />
-      <section className='appRightContainer'>
-        <TopBar />
-        <div className='appRightContentWrapper'>
-          <Switch>
-            <Route exact path='/'>
-              <IndexPage />
-            </Route>
-            <Route path='/login'>
-              <Login />
-            </Route>
-            <Route path='/tag'>
-              <Tag />
-            </Route>
-            <Route path='*'>
-              <Page404 />
-            </Route>
-          </Switch>
-        </div>
-      </section>
-    </Router>
-  )
-}
-
-export {
-  AppRoute,
-}
+export const AppRoute: React.FC<any> = () => (
+  <Router>
+    <Menu />
+    <section className='appRightContainer'>
+      <TopBar />
+      <div className='appRightContentWrapper'>
+        <Switch>
+          <Route exact path='/'>
+            <IndexPage />
+          </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          <Route path='/tag'>
+            <Tag />
+          </Route>
+          <Route path='*'>
+            <Page404 />
+          </Route>
+        </Switch>
+      </div>
+    </section>
+  </Router>
+)
