@@ -1,6 +1,7 @@
-import React, { useReducer, createContext } from 'react'
+import React, { useReducer } from 'react'
 import { reducer } from './reducer'
-import { storeState } from './state'
+import { storeState, IContext } from './state'
+import { AppContext } from './context'
 
 interface IProps {
   children: any,
@@ -10,10 +11,10 @@ const AppProvider: React.FC<IProps> = (props) => {
 
   const [appStore, dispatch] = useReducer(reducer, storeState)
 
-  const AppContext = createContext({ appStore, dispatch })
+  const appState: IContext = { appStore, dispatch }
 
   return (
-    <AppContext.Provider value={{ appStore, dispatch }}>
+    <AppContext.Provider value={appState}>
       {props.children}
     </AppContext.Provider>
   )

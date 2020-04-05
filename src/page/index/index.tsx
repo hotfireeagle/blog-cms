@@ -1,7 +1,5 @@
 import React from 'react'
-// import { connect } from 'react-redux'
-import { testActionCreator } from './action'
-import { IAppState } from '../../redux/interface'
+import { AppContext } from '../../store/context'
 
 interface IProps {
   count: number,
@@ -9,14 +7,12 @@ interface IProps {
 }
 
 const IndexPageComponent: React.FC<any> = props => {
-  return <h1 onClick={props.testActionCreator}>{props.count}</h1>
+  const context = React.useContext(AppContext)
+
+  const add = () => context.dispatch({ type: 'ADD' })
+
+  return <h1 onClick={add}>{context.appStore.count}</h1>
 }
-
-// const mapStateToProps = (storeState: IAppState) => ({
-//   count: storeState.pageIndex.count,
-// })
-
-// const mapDispatchToProps = { testActionCreator }
 
 const IndexPage = IndexPageComponent
 
