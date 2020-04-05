@@ -13,6 +13,8 @@ const AppProvider: React.FC<IProps> = (props) => {
 
   const appState: IContext = { appStore, dispatch }
 
+  console.error('wd')
+
   return (
     <AppContext.Provider value={appState}>
       {props.children}

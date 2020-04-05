@@ -1,5 +1,5 @@
 export interface IStoreState {
-  count: number
+  [k: string]: any
 }
 
 export interface IContext {
@@ -8,7 +8,9 @@ export interface IContext {
 }
 
 const storeState: IStoreState = {
-  count: 1,
+  pageIndex: {
+    count: 1,
+  }
 }
 
 export {

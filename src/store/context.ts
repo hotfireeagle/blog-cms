@@ -2,7 +2,11 @@ import React from 'react'
 import { IContext } from './state'
 
 const initUselessContext: IContext = {
-  appStore: { count: 1 },
+  appStore: {
+    pageIndex: {
+      count: 1,
+    }
+  },
   dispatch: () => {},
 }
 
