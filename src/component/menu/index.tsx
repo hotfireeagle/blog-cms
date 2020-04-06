@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { InitAppRoutes } from '../../constant/route'
 import './index.scss'
 
-const MenuComponent: React.FC<any> = (props: RouteComponentProps) => {
+const MenuComponent: React.FC<RouteComponentProps> = (props) => {
 
   const currentRoute: string = props.location.pathname;
 

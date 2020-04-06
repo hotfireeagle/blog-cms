@@ -42,3 +42,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## 待搞清楚问题
+
+1.关于验证是否登录的第一道防线上，使用到了router的render以及redirect．问题是为什么redirect的route一定非得写在被保护的route之前．
