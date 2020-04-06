@@ -18,12 +18,12 @@ export const AppRoute: React.FC<any> = () => (
           <Route path='/login'>
             <Login />
           </Route>
-          <PrivateRoute path="/" exact={true}>
+          <PrivateRoute path='/' exact={true}>
             <IndexPage />
           </PrivateRoute>
-          <Route path='/tag'>
+          <PrivateRoute path='/tag'>
             <Tag />
-          </Route>
+          </PrivateRoute>
           <Route path='*'>
             <Page404 />
           </Route>

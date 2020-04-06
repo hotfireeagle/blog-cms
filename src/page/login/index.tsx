@@ -1,15 +1,22 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { message } from '../../component/message'
 import { fetchData } from '../../util/fetch'
 import { saveToken } from '../../util/token'
 import './index.scss'
+
+interface HasFrom {
+  from: any
+}
 
 const Login: React.FC<any> = props => {
 
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const history = useHistory()
+  const location = useLocation()
+
+  const { from } = location.state as HasFrom || { from: { pathname: '/' } }
 
   const handleLogin = async () => {
     const obj = { name, password }
@@ -17,7 +24,7 @@ const Login: React.FC<any> = props => {
     const token = await fetchData(api, 'post', obj)
     message.success('登录成功')
     saveToken(token)
-    history.replace('/')
+    history.replace(from)
   }
 
   return (
