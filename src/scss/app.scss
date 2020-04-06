@@ -23,6 +23,12 @@ html, body {
   flex-direction: column;
   align-items: center;
 }
+.flexcc {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 .flexg {
   flex-grow: 1;
 }
