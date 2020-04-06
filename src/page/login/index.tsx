@@ -21,7 +21,7 @@ const Login: React.FC<any> = props => {
   const handleLogin = async () => {
     const obj = { name, password }
     const api = '/api/user/login'
-    const token = await fetchData(api, 'post', obj)
+    const token = await fetchData(api, 'post', undefined, obj)
     message.success('登录成功')
     saveToken(token)
     history.replace(from)

@@ -31,6 +31,7 @@ const message: IMessage = {
 
   hide() {
     this.targetDom && document.body.removeChild(this.targetDom)
+    this.targetDom = null
     this.onShow = false
   },
 
