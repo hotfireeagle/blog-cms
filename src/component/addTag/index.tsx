@@ -18,9 +18,12 @@ export const AddTagComponent: React.FC<IProps> = (props) => {
     history.replace({ pathname: '/login', state: { from: location }})
   }
 
-  const addTag = () => {
+  const addTag = async () => {
     const url = '/api/tag/new'
-    fetchData(url, 'POST', loginCb, { name }).then(() => { message.show('操作成功', 'success') })
+    await fetchData(url, 'POST', loginCb, { name })
+    props.closeModal()
+    message.show('操作成功', 'success')
+    props.updateList()
   }
 
   const nameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +32,8 @@ export const AddTagComponent: React.FC<IProps> = (props) => {
   }
 
   return (
-    <div className='addTagComponentWrapper' onClick={props.closeModal}>
+    <>
+      <div className='addTagComponentWrapper' onClick={props.closeModal} />
       <div className='modalWrapper'>
         <div className='modalHeader flexRow'>增加标签</div>
         <div className='modalBody flexRow'>
@@ -40,6 +44,6 @@ export const AddTagComponent: React.FC<IProps> = (props) => {
           <button className='sureBtn flexcc' onClick={addTag}>确定</button>
         </div>
       </div>
-    </div>
+    </>
   )
 }

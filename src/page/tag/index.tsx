@@ -18,9 +18,12 @@ export const Tag: React.FC<any> = () => {
 
   const loginCb = () => { history.replace({ pathname: '/login', state: { from: location } }) }
 
-  const updateList = () => {}
+  const updateList = () => {
+    const url = '/api/tag/all'
+    fetchData(url, 'GET', loginCb).then(data => { setTag(data) })
+  }
 
-  const closeModal = () => {}
+  const closeModal = () => { setShowModal(false); }
 
   useEffect(() => {
     const url = '/api/tag/all'
