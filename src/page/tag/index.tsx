@@ -33,7 +33,7 @@ export const Tag: React.FC<any> = () => {
 
   return (
     <div className='inputPageWrapper'>
-      { tags.map(tagObj => (<TagItem key={tagObj.id} tagObj={tagObj} />)) }
+      { tags.map(tagObj => (<TagItem key={tagObj.id} tagObj={tagObj} updateList={updateList} />)) }
       <div className='emptyAdd flexcc' onClick={() => setShowModal(true)}>
         <span className='addIcon'>+</span>
       </div>

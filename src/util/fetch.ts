@@ -3,7 +3,7 @@ import { obj2str } from './tool'
 import { ApiCode } from '../constant/conf'
 import { message } from '../component/message'
 
-type HttpMethods = 'get' | 'GET' | 'post' | 'POST'
+type HttpMethods = 'get' | 'GET' | 'post' | 'POST' | 'DELETE' | 'delete'
 
 type FunType = (api: string, method: HttpMethods, loginCb?: () => void, data?: any) => Promise<any>
 
@@ -22,9 +22,15 @@ interface IResponse {
 const fetchData: FunType = (url: string, method: HttpMethods, loginCb?: () => void, httpParams?: any) => {
   return new Promise((resolve, reject) => {
     let data: any;
-    if (method.toLowerCase() === 'get') { // GET类请求
+    if (method.toLowerCase() === 'get') {
       data = {
         method: 'GET',
+        headers: { 'token': getToken(), },
+      }
+      httpParams && (url = `${url}?${obj2str(httpParams)}`)
+    } else if (method.toLowerCase() === 'delete') {
+      data = {
+        method: 'DELETE',
         headers: { 'token': getToken(), },
       }
       httpParams && (url = `${url}?${obj2str(httpParams)}`)
