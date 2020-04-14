@@ -7,6 +7,7 @@ import { IndexPage } from './page/index'
 import { Page404 } from './page/404'
 import { Login } from './page/login'
 import { Tag } from './page/tag'
+import { Article } from './page/article'
 
 export const AppRoute: React.FC<any> = () => (
   <Router>
@@ -23,6 +24,9 @@ export const AppRoute: React.FC<any> = () => (
           </PrivateRoute>
           <PrivateRoute path='/tag'>
             <Tag />
+          </PrivateRoute>
+          <PrivateRoute path='/article/:new'>
+            <Article />
           </PrivateRoute>
           <Route path='*'>
             <Page404 />
