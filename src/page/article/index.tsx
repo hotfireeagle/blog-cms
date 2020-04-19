@@ -1,9 +1,10 @@
-import React, { useState, useEffect, ChangeEvent } from 'react'
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import ReactQuill from 'react-quill'
 import { fetchData } from '../../util/fetch'
 import { IResponse, IArticle } from './interface'
 import 'react-quill/dist/quill.snow.css'
+import './index.scss'
 
 interface ITag {
   name: string,
@@ -40,6 +41,7 @@ const Article: React.FC<any> = (props) => {
 
   const [articleObj, setArticleObj] = useState<IArticle>(initArticleObj) // 文章数据的建模
   const [tags, setTags] = useState([] as ITag[]) // 标签列表数据的建模
+  const [allScreen, setAllScreen] = useState(false) // 是否全屏
 
   const loginCb = () => {
     history.push('/login')
@@ -52,7 +54,7 @@ const Article: React.FC<any> = (props) => {
       mount && setTags(response)
     })
     return () => { mount = false }
-  }, [loginCb])
+  }, [])
 
   /** 设置文章数据的effect */
   useEffect(() => {
@@ -70,7 +72,21 @@ const Article: React.FC<any> = (props) => {
       mount && setArticleObj(initArticleObj)
     }
     return () => { mount = false }
-  }, [loginCb, param.articleId])
+  }, [param.articleId])
+
+  useEffect(() => {
+    const eventHandler = (event: any) => {
+      const keyCode = event.keyCode || event.which || event.charCode
+      const ctrl = event.metaKey
+      if (ctrl && keyCode === 75) { // comand + k
+        setAllScreen(old => !old)
+      }
+    }
+    window.document.addEventListener('keydown', eventHandler)
+    return () => {
+      window.document.removeEventListener('keydown', eventHandler)
+    }
+  }, [])
 
   /** 保存的逻辑 */
   const save = () => {
@@ -119,7 +135,15 @@ const Article: React.FC<any> = (props) => {
       </div>
 
       <button onClick={save}>更新</button>
-      <ReactQuill theme='snow' value={articleObj.content} onChange={setContentHandler} modules={modules} />
+      {
+        allScreen ?
+        <>
+          <div className='allScreen'></div>
+          <ReactQuill className='rich' theme='snow' value={articleObj.content} onChange={setContentHandler} modules={modules} />
+        </>
+        :
+        <ReactQuill theme='snow' value={articleObj.content} onChange={setContentHandler} modules={modules} />
+      }
     </div>
   )
 }
