@@ -52,7 +52,7 @@ const Article: React.FC<any> = (props) => {
       mount && setTags(response)
     })
     return () => { mount = false }
-  }, [])
+  }, [loginCb])
 
   /** 设置文章数据的effect */
   useEffect(() => {
@@ -70,7 +70,7 @@ const Article: React.FC<any> = (props) => {
       mount && setArticleObj(initArticleObj)
     }
     return () => { mount = false }
-  }, [])
+  }, [loginCb, param.articleId])
 
   /** 保存的逻辑 */
   const save = () => {
@@ -91,9 +91,10 @@ const Article: React.FC<any> = (props) => {
   }
 
   const tagChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
+    const tags = [event.target.value]
     setArticleObj(currentState => ({
       ...currentState,
-      tags: [event.target.value]
+      tags
     }))
   }
 
@@ -110,7 +111,7 @@ const Article: React.FC<any> = (props) => {
 
       <div className='row'>
         <label htmlFor='lieDay'>文章标签</label>
-        <select id='lieDay' value={articleObj.tags[0]} onChange={tagChangeHandler}>
+        <select id='lieDay' value={articleObj.tags[0] ? +articleObj.tags[0] : 0} onChange={tagChangeHandler}>
           {
             tags.map(tagObj => <option value={tagObj.id} key={tagObj.id}>{tagObj.name}</option>)
           }

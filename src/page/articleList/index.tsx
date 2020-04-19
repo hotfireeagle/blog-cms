@@ -31,7 +31,7 @@ export const ArticleList: React.FC<any> = (props) => {
       isMount && setApiResponse(data)
     })
     return () => { isMount = false }
-  }, [])
+  }, [loginCb])
 
   if (!apiResponse || !apiResponse.result) return <h1>loading</h1>
   return (
