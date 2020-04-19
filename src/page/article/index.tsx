@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router'
+import React, { useState, useEffect, ChangeEvent } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 import ReactQuill from 'react-quill'
 import { fetchData } from '../../util/fetch'
+import { IResponse, IArticle } from './interface'
 import 'react-quill/dist/quill.snow.css'
-
-interface IArticle {
-  title: string,
-  content: string,
-}
 
 interface ITag {
   name: string,
@@ -16,6 +12,12 @@ interface ITag {
 
 interface IParam {
   articleId?: string
+}
+
+const initArticleObj: IArticle = {
+  content: '',
+  title: '',
+  tags: []
 }
 
 const modules = {
@@ -36,49 +38,87 @@ const Article: React.FC<any> = (props) => {
   const history = useHistory()
   const param = useParams<IParam>()
 
-  const [value, setValue] = useState('')
-  const [articleObj, setArticleObj] = useState({} as IArticle)
-  const [tags, setTags] = useState([] as ITag[])
+  const [articleObj, setArticleObj] = useState<IArticle>(initArticleObj) // 文章数据的建模
+  const [tags, setTags] = useState([] as ITag[]) // 标签列表数据的建模
 
   const loginCb = () => {
     history.push('/login')
   }
 
-  /** 设置标签的effect */
+  /** 设置标签列表数据的effect */
   useEffect(() => {
+    let mount = true
     fetchData('/api/tag/all', 'get', loginCb).then(response => {
-      setTags(response)
+      mount && setTags(response)
     })
+    return () => { mount = false }
   }, [])
 
   /** 设置文章数据的effect */
   useEffect(() => {
+    let mount = true
     const articleId = param.articleId
-    if (articleId != undefined) { // 说明是新增
-      setArticleObj({} as IArticle)
-    } else { // TODO: 说明是修改
-      
+    if (articleId != undefined) { // 修改文章的情况
+      fetchData(`/api/article/${articleId}`, 'get', loginCb).then((res: IResponse) => {
+        const result = {
+          ...res,
+          tags: res.tags.map(tagObj => tagObj.id)
+        }
+        mount && setArticleObj(result)
+      })
+    } else { // 新增文章的情况
+      mount && setArticleObj(initArticleObj)
     }
+    return () => { mount = false }
   }, [])
 
+  /** 保存的逻辑 */
+  const save = () => {
+    fetchData('/api/article/new', 'post', loginCb, articleObj).then(res => {
+      console.log('res', res)
+    })
+  }
+
+  const setArticleObjHandler = (key: 'title' | 'content', value: string) => {
+    setArticleObj((currentState) => ({
+      ...currentState,
+      [key]: value
+    }))
+  }
+
+  const setTitle = (event: ChangeEvent<HTMLInputElement>) => {
+    setArticleObjHandler('title', event.target.value)
+  }
+
+  const tagChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
+    setArticleObj(currentState => ({
+      ...currentState,
+      tags: [event.target.value]
+    }))
+  }
+
+  // 富文件内容发生变化的监听方法
+  const setContentHandler = (value: string) => {
+    setArticleObjHandler('content', value)
+  }
   return (
     <div className='pageWrapper'>
       <div className='row'>
         <label htmlFor='title'>文章标题</label>
-        <input type='text' value={articleObj.title} id='title' />
+        <input type='text' value={articleObj.title} onChange={setTitle} id='title' />
       </div>
 
       <div className='row'>
-        <label htmlFor='tag'>文章标签</label>
-        <select id='tag'>
+        <label htmlFor='lieDay'>文章标签</label>
+        <select id='lieDay' value={articleObj.tags[0]} onChange={tagChangeHandler}>
           {
             tags.map(tagObj => <option value={tagObj.id} key={tagObj.id}>{tagObj.name}</option>)
           }
         </select>
       </div>
 
-      <button>更新</button>
-      <ReactQuill theme='snow' value={value} onChange={setValue} modules={modules} />
+      <button onClick={save}>更新</button>
+      <ReactQuill theme='snow' value={articleObj.content} onChange={setContentHandler} modules={modules} />
     </div>
   )
 }
