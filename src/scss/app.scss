@@ -35,11 +35,5 @@ html, body {
 .appRightContainer {
   min-height: 100vh;
   margin-left: $menu-width;
-  .appRightContentWrapper {
-    background: #fff;
-    margin: 20px 20px;
-    min-height: calc(100vh - #{$top-bar-height} - 40px);
-    border: 1px solid #f0f0f0;
-    border-radius: 4px;
-  }
+  padding: 10px 20px;
 }

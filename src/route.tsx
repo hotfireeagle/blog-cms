@@ -12,31 +12,29 @@ export const AppRoute: React.FC<any> = () => (
   <Router>
     <Menu />
     <section className='appRightContainer'>
-      <div className='appRightContentWrapper'>
-        <Switch>
-          <Route path='/login'>
-            <Login />
-          </Route>
-          <PrivateRoute path='/' exact={true}>
-            <Article />
-          </PrivateRoute>
-          <PrivateRoute path='/tag'>
-            <Tag />
-          </PrivateRoute>
-          <PrivateRoute path='/newArticle'>
-            <Article />  
-          </PrivateRoute>'
-          <PrivateRoute path='/articleDetail/:articleId'>
-            <Article />
-          </PrivateRoute>
-          <PrivateRoute path='/articleList'>
-            <ArticleList />
-          </PrivateRoute>
-          <Route path='*'>
-            <Page404 />
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route path='/login'>
+          <Login />
+        </Route>
+        <PrivateRoute path='/' exact={true}>
+          <ArticleList />
+        </PrivateRoute>
+        <PrivateRoute path='/tag'>
+          <Tag />
+        </PrivateRoute>
+        <PrivateRoute path='/newArticle'>
+          <Article />  
+        </PrivateRoute>'
+        <PrivateRoute path='/articleDetail/:articleId'>
+          <Article />
+        </PrivateRoute>
+        <PrivateRoute path='/articleList'>
+          <ArticleList />
+        </PrivateRoute>
+        <Route path='*'>
+          <Page404 />
+        </Route>
+      </Switch>
     </section>
   </Router>
 )

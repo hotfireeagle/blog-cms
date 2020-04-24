@@ -1,0 +1,34 @@
+.articleListComponentWrapper {
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    * {
+      flex-shrink: 0;
+    }
+    .w5 {
+      flex-grow: 5;
+    }
+    .w3 {
+      flex-grow: 3;
+    }
+    .w6 {
+      flex-grow: 6;
+    }
+    .w7 {
+      flex-grow: 7;
+    }
+    .w4 {
+      flex-grow: 4;
+    }
+    .w2 {
+      flex-grow: 2;
+    }
+  }
+  .header {
+    height: 54px;
+    background: #f0f0f0;
+    padding: 0 8px;
+    font-size: 14px;
+  }
+}

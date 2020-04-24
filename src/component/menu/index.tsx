@@ -1,19 +1,22 @@
 import React from 'react'
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
+import { Link, withRouter, RouteComponentProps, useHistory } from 'react-router-dom'
 import classNames from 'classnames'
 import { InitAppRoutes } from '../../constant/route'
 import './index.scss'
 
 const MenuComponent: React.FC<RouteComponentProps> = (props) => {
+  const history = useHistory()
+  const currentRoute: string = props.location.pathname
 
-  const currentRoute: string = props.location.pathname;
+  const newArticleHandler = () => {
+    history.push('/newArticle')
+  }
 
   return (
     <nav className='menuComponentWrapper'>
       <h1 className='blogTitle'>博客管理系统</h1>
       <div className='newBtn flexcc'>
-        <img className='addIcon' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAgMAAAAOFJJnAAAACVBMVEUAAAD///////9zeKVjAAAAAnRSTlMAQABPjKgAAAAoSURBVBjTYyAbsAZAGWwTKGCwhoZNDQ0A8VcBwQQ4Ay5FkRUIp5ILAMMdEy9nmcq5AAAAAElFTkSuQmCC' />
-        <span>新建文章</span>
+        <span onClick={newArticleHandler}>新建文章</span>
       </div>
       <div className='linkWrapper flexColumn'>
         {

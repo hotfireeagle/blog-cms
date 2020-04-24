@@ -1,0 +1,11 @@
+.loadingWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  .img {
+    width: 99px;
+    height: 99px;
+  }
+}
