@@ -10,7 +10,11 @@ const MenuComponent: React.FC<RouteComponentProps> = (props) => {
 
   return (
     <nav className='menuComponentWrapper'>
-      <h1 className='blogTitle'>夜游cola博客管理系统</h1>
+      <h1 className='blogTitle'>博客管理系统</h1>
+      <div className='newBtn flexcc'>
+        <img className='addIcon' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAgMAAAAOFJJnAAAACVBMVEUAAAD///////9zeKVjAAAAAnRSTlMAQABPjKgAAAAoSURBVBjTYyAbsAZAGWwTKGCwhoZNDQ0A8VcBwQQ4Ay5FkRUIp5ILAMMdEy9nmcq5AAAAAElFTkSuQmCC' />
+        <span>新建文章</span>
+      </div>
       <div className='linkWrapper flexColumn'>
         {
           InitAppRoutes.map(routerObj => <Link

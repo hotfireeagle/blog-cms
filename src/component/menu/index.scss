@@ -3,48 +3,60 @@
 @import '../../scss/px.scss';
 
 .menuComponentWrapper {
+  box-sizing: border-box;
   width: $menu-width;
   height: 100vh;
   position: fixed;
   left: 0; top: 0;
-  background: #946bd5;
   z-index: 2;
   color: $menu-font-color;
+  border-right: 6px solid #dadada;
   .blogTitle {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 600;
     height: $top-bar-height;
     line-height: $top-bar-height;
-    text-align: center;
     border-bottom: $topbar-borderbottom;
+    padding-left: 15px;
+  }
+  .newBtn {
+    margin: 15px;
+    height: 40px;
+    border-radius: 4px;
+    background: #0188fb;
+    color: #fff;
+  }
+  .addIcon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
   }
   .linkWrapper {
     padding: 10px 0;
     .linkItem {
+      width: 100%;
       margin-top: 5px;
       margin-bottom: 5px;
       box-sizing: border-box;
-      width: 230px;
       height: 50px;
       padding: 0 15px;
       cursor: pointer;
       border-radius: 4px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #fff;
+      font-size: 14px;
+      color: rgba(0, 0, 0, .8);
       text-decoration: none;
       outline: none;
       &:hover, &:active, &:visited {
-        color: #fff;
+        color: rgba(0, 0, 0, .8);
       }
       .linkImg {
-        width: 30px;
-        height: 30px;
-        margin-right: 15px;
+        width: 12px;
+        height: 13px;
+        margin-right: 10px;
       }
     }
     .activeLink, .linkItem:hover {
-      background: rgba(255, 255, 255, 0.23);
+      background: #f0f0f0;
     }
   }
 }

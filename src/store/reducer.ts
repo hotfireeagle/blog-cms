@@ -1,5 +1,3 @@
-import { pageIndex } from '../page/index/reducer'
-
 export interface IAction {
   type: string
   [k: string]: any
@@ -39,5 +37,4 @@ const combineReducers = (appReducers: AppReducers) => {
 }
 
 export const reducer = combineReducers({
-  pageIndex,
 })

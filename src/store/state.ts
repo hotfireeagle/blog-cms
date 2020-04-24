@@ -1,7 +1,5 @@
-import { IndexPageStore } from '../page/index/interface'
-
 export interface IStoreState {
-  pageIndex: IndexPageStore
+
 }
 
 export interface IContext {
@@ -10,8 +8,5 @@ export interface IContext {
 }
 
 export const defaultStoreState: IStoreState = {
-  pageIndex: {
-    count: 1,
-  }
-}
 
+}
