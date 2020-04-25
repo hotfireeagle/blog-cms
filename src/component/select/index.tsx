@@ -42,7 +42,7 @@ const Select: React.FC<IProps> = (props) => {
 
       {
         showOptions && 
-        <div className='optionWrapper' style={{ top: +(props.height) }}>
+        <div className='optionWrapper' style={{ top: +(props.height)+5 }}>
           <div className='flexItemWrapper'>
           {
             props.options.map(optionObj => (

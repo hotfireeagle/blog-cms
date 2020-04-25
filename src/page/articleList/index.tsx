@@ -45,7 +45,7 @@ export const ArticleList: React.FC<any> = (props) => {
   return (
     <LoadingWrapper
       loading={loading}
-      height="600"
+      height={600}
     >
       <div className='articleListComponentWrapper'>
         <div className='header row'>

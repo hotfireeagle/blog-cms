@@ -18,20 +18,25 @@
     z-index: 100;
     background: #fff;
     .flexItemWrapper {
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: 4px;
+      box-shadow: 0 6px 12px rgba(0,0,0,.175);
       display: flex;
       flex-direction: column;
-      box-shadow: 0px 6px 16px -8px rgba(0, 0, 0, 0.12), 0px 9px 28px 0px rgba(0, 0, 0, 0.08), 0px 12px 48px 16px rgba(0, 0, 0, 0.05);
       .optionItem {
         font-size: 14px;
         display: flex;
         flex-direction: row;
         align-items: center;
         color: rgba(0, 0, 0, 0.78);
-        padding-left: 3px;
+        padding-left: 16px;
         cursor: pointer;
         &:hover {
-          background: #eee;
+          background: rgba(0,0,0,.05);
         }
+      }
+      .optionItem+.optionItem {
+        border-top: 1px solid rgba(0,0,0,.05);
       }
     }
   }
