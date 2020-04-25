@@ -6,6 +6,7 @@ export interface ITag {
 export interface IArticle {
   id: number
   title: string
+  date: string
   tags: Array<ITag>
 }
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { fetchData } from '../../util/fetch'
 import LoadingWrapper from '../../component/loadingWrapper'
-import { IArticleListResponse } from '../../data.interface'
+import { ITag, IArticleListResponse } from '../../data.interface'
 import './index.scss'
 
 export const ArticleList: React.FC<any> = (props) => {
@@ -23,6 +23,25 @@ export const ArticleList: React.FC<any> = (props) => {
     return () => { isMount = false }
   }, [])
 
+  // 生成背景颜色
+  const returnColor = () => {
+    const colors = ['#eb2f96', '#2f54eb', '#52c41a']
+    const idx = Math.floor((Math.random() * colors.length))
+    return colors[idx]
+  }
+
+  // 渲染标签数据
+  const renderTags = (tags: Array<ITag>) => {
+    return tags.map(tagObj => {
+      const c = returnColor()
+      return (
+        <span className='tagItem' style={{ color: c, border: `1px solid ${c}` }}>
+          {tagObj.name}
+        </span>
+      )
+    })
+  }
+
   return (
     <LoadingWrapper
       loading={loading}
@@ -30,15 +49,20 @@ export const ArticleList: React.FC<any> = (props) => {
     >
       <div className='articleListComponentWrapper'>
         <div className='header row'>
-          <div className='w4'>标题</div>
-          <div className='w2'>标签</div>
-          <div className='w2'>发布时间</div>
-          <div className='w2'>操作</div>
+          <div>标题</div>
+          <div>标签</div>
+          <div>发布时间</div>
+          <div>操作</div>
         </div>
         {
           apiResponse && apiResponse.result.map(articleObj => (
-            <div key={articleObj.id}>
-              <Link to={`/articleDetail/${articleObj.id}`}>{articleObj.title}</Link>
+            <div className='articleItem row' key={articleObj.id}>
+              <div>{articleObj.title}</div>
+              <div className='tagListWrapper'>
+                {renderTags(articleObj.tags)}
+              </div>
+              <div>{articleObj.date}</div>
+              <Link to={`/articleDetail/${articleObj.id}`} className='clickSpan'>编辑</Link>
             </div>
           ))
         }

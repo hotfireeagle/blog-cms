@@ -36,4 +36,12 @@ html, body {
   min-height: 100vh;
   margin-left: $menu-width;
   padding: 10px 20px;
+  border-left: 1px #f0f0f0 solid;
+}
+.clickSpan {
+  text-decoration: none;
+  color: #1890ff;
+  &:active, &:hover {
+    color: #1890ff;
+  }
 }
