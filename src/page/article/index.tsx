@@ -5,6 +5,7 @@ import { AppContext } from '../../store/context'
 import { fetchData } from '../../util/fetch'
 import { ITag, IResponse, IArticle } from './interface'
 import { setMenuDisplay } from '../../component/menu/action'
+import Select from '../../component/select'
 import 'react-quill/dist/quill.snow.css'
 import './index.scss'
 
@@ -112,8 +113,8 @@ const Article: React.FC<any> = (props) => {
   }
 
   // 改变标签的时候触发
-  const tagChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-    const tags = [event.target.value]
+  const tagChangeHandler = (value: string) => {
+    const tags = [''+value]
     setArticleObj(currentState => ({
       ...currentState,
       tags
@@ -135,11 +136,19 @@ const Article: React.FC<any> = (props) => {
       <div className='row'>
         <input type='text' value={articleObj.title} onChange={setTitle} placeholder='请输入文章标题' className='inputC' />
 
-        <select value={articleObj.tags[0] ? +articleObj.tags[0] : 0} onChange={tagChangeHandler}>
+        {/* <select value={articleObj.tags[0] ? +articleObj.tags[0] : 0} onChange={tagChangeHandler}>
           {
             tags.map(tagObj => <option value={tagObj.id} key={tagObj.id}>{tagObj.name}</option>)
           }
-        </select>
+        </select> */}
+        <Select
+          options={tags}
+          placeHolder='请选择文章标签'
+          width={360}
+          height={33}
+          value={articleObj.tags[0]}
+          valueChangeHandler={tagChangeHandler}
+        />
 
         <span className='flexg' />
         <button onClick={hideMenu} className='primaryBtn mr10'>{showMenu ? '隐藏菜单' : '显示菜单'}</button>
