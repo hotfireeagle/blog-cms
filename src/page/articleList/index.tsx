@@ -35,7 +35,7 @@ export const ArticleList: React.FC<any> = (props) => {
     return tags.map(tagObj => {
       const c = returnColor()
       return (
-        <span className='tagItem' style={{ color: c, border: `1px solid ${c}` }}>
+        <span key={tagObj.id} className='tagItem' style={{ color: c, border: `1px solid ${c}` }}>
           {tagObj.name}
         </span>
       )

@@ -1,5 +1,7 @@
-export interface IStoreState {
+import { IMenuModuleState } from '../component/menu/interface'
 
+export interface IStoreState {
+  menu: IMenuModuleState
 }
 
 export interface IContext {
@@ -8,5 +10,7 @@ export interface IContext {
 }
 
 export const defaultStoreState: IStoreState = {
-
+  menu: {
+    showMenu: true
+  }
 }

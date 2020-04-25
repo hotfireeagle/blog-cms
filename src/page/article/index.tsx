@@ -1,15 +1,12 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react'
+import React, { useState, useEffect, ChangeEvent, useContext } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import ReactQuill from 'react-quill'
+import { AppContext } from '../../store/context'
 import { fetchData } from '../../util/fetch'
-import { IResponse, IArticle } from './interface'
+import { ITag, IResponse, IArticle } from './interface'
+import { setMenuDisplay } from '../../component/menu/action'
 import 'react-quill/dist/quill.snow.css'
 import './index.scss'
-
-interface ITag {
-  name: string,
-  id: number,
-}
 
 interface IParam {
   articleId?: string
@@ -18,9 +15,10 @@ interface IParam {
 const initArticleObj: IArticle = {
   content: '',
   title: '',
-  tags: []
+  tags: [],
 }
 
+// 富文本编辑器的配置数据
 const modules = {
   toolbar: [
     [{ font: [] }, { size: [] }],
@@ -38,7 +36,11 @@ const modules = {
 const Article: React.FC<any> = (props) => {
   const history = useHistory()
   const param = useParams<IParam>()
+  const context = useContext(AppContext)
 
+  const { dispatch } = context
+  const moduleState = context.appStore.menu
+  const { showMenu } = moduleState
   const [articleObj, setArticleObj] = useState<IArticle>(initArticleObj) // 文章数据的建模
   const [tags, setTags] = useState([] as ITag[]) // 标签列表数据的建模
   const [allScreen, setAllScreen] = useState(false) // 是否全屏
@@ -74,11 +76,12 @@ const Article: React.FC<any> = (props) => {
     return () => { mount = false }
   }, [param.articleId])
 
+  // 这个effect只在挂载的时候会被执行
   useEffect(() => {
     const eventHandler = (event: any) => {
       const keyCode = event.keyCode || event.which || event.charCode
       const ctrl = event.metaKey
-      if (ctrl && keyCode === 75) { // comand + k
+      if (ctrl && keyCode === 75) { // comand + k 组合键进行全屏
         setAllScreen(old => !old)
       }
     }
@@ -88,13 +91,14 @@ const Article: React.FC<any> = (props) => {
     }
   }, [])
 
-  /** 保存的逻辑 */
+  // FIXME: 修复加载数据的时候所遇到的问题
   const save = () => {
     fetchData('/api/article/new', 'post', loginCb, articleObj).then(res => {
       console.log('res', res)
     })
   }
 
+  // 设置文章数据的handler
   const setArticleObjHandler = (key: 'title' | 'content', value: string) => {
     setArticleObj((currentState) => ({
       ...currentState,
@@ -102,10 +106,12 @@ const Article: React.FC<any> = (props) => {
     }))
   }
 
+  // 设置文章标题
   const setTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setArticleObjHandler('title', event.target.value)
   }
 
+  // 改变标签的时候触发
   const tagChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     const tags = [event.target.value]
     setArticleObj(currentState => ({
@@ -118,23 +124,27 @@ const Article: React.FC<any> = (props) => {
   const setContentHandler = (value: string) => {
     setArticleObjHandler('content', value)
   }
-  return (
-    <div className='pageWrapper'>
-      <div className='row'>
-        <label htmlFor='title'>文章标题</label>
-        <input type='text' value={articleObj.title} onChange={setTitle} id='title' />
-      </div>
 
+  // 监听点击因此左侧菜单
+  const hideMenu = () => {
+    dispatch({ type: setMenuDisplay, data: !showMenu })
+  }
+
+  return (
+    <div className='articlePageWrapper'>
       <div className='row'>
-        <label htmlFor='lieDay'>文章标签</label>
-        <select id='lieDay' value={articleObj.tags[0] ? +articleObj.tags[0] : 0} onChange={tagChangeHandler}>
+        <input type='text' value={articleObj.title} onChange={setTitle} placeholder='请输入文章标题' className='inputC' />
+
+        <select value={articleObj.tags[0] ? +articleObj.tags[0] : 0} onChange={tagChangeHandler}>
           {
             tags.map(tagObj => <option value={tagObj.id} key={tagObj.id}>{tagObj.name}</option>)
           }
         </select>
-      </div>
 
-      <button onClick={save}>更新</button>
+        <span className='flexg' />
+        <button onClick={hideMenu} className='primaryBtn mr10'>{showMenu ? '隐藏菜单' : '显示菜单'}</button>
+        <button onClick={save} className='primaryBtn'>更新</button>
+      </div>
       {
         allScreen ?
         <>

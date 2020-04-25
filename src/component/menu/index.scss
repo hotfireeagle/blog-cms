@@ -12,7 +12,6 @@
   color: $menu-font-color;
   .blogTitle {
     font-size: 19px;
-    font-weight: 600;
     height: $top-bar-height;
     line-height: $top-bar-height;
     border-bottom: $topbar-borderbottom;
@@ -21,9 +20,12 @@
   .newBtn {
     margin: 15px;
     height: 40px;
-    border-radius: 4px;
-    background: #0188fb;
+    border-radius: 2px;
+    background: #1890ff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 0 rgba(0,0,0,.045);
     color: #fff;
+    font-size: 14px;
     cursor: pointer;
   }
   .addIcon {
@@ -32,7 +34,7 @@
     margin-right: 5px;
   }
   .linkWrapper {
-    padding: 10px 0;
+    padding: 5px 15px;
     .linkItem {
       width: 100%;
       margin-top: 5px;

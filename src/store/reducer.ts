@@ -1,7 +1,5 @@
-export interface IAction {
-  type: string
-  [k: string]: any
-}
+import { IAction } from '../data.interface'
+import menu from '../component/menu/reducer'
 
 type IReducer = (state: any, action: IAction) => {}
 
@@ -37,4 +35,5 @@ const combineReducers = (appReducers: AppReducers) => {
 }
 
 export const reducer = combineReducers({
+  menu,
 })

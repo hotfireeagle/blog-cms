@@ -14,3 +14,8 @@ export interface IArticleListResponse {
   result: Array<IArticle>
   total: number
 }
+
+export interface IAction {
+  type: string
+  [key: string]: any
+}

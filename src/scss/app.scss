@@ -38,10 +38,45 @@ html, body {
   padding: 10px 20px;
   border-left: 1px #f0f0f0 solid;
 }
+.appRightContainerNml {
+  min-height: 100vh;
+  padding: 10px 20px;
+  border-left: 1px #f0f0f0 solid;
+}
 .clickSpan {
   text-decoration: none;
   color: #1890ff;
   &:active, &:hover {
     color: #1890ff;
   }
+}
+input {
+  box-sizing: border-box;
+  padding: 5px 11px 5px 3px;
+  border: none;
+  border-bottom: 1px solid #d9d9d9;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 1.5715;
+  display: inline-block;
+  outline: none;
+  &:active, &:focus {
+    border-bottom: 1px solid #1890ff;
+  }
+}
+.primaryBtn {
+  background: #1890ff;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+  box-shadow: 0 2px 0 rgba(0,0,0,.045);
+  text-align: center;
+  padding: 7px 15px;
+  border: none;
+  outline: none;
+  min-width: 5em;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.mr10 {
+  margin-right: 10px;
 }
