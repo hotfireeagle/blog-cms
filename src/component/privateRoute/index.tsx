@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect, RouteComponentProps, withRouter } from 'react-router-dom'
-import { getToken } from './util/token'
+import { getToken } from '../../util/token'
 
 interface IProps {
   children: any
@@ -18,6 +18,8 @@ const PrivateRouteRender: React.FC<PRR> = (props) => {
 
 const PrivateRouteRenderWrapper = withRouter(PrivateRouteRender)
 
-export const PrivateRoute: React.FC<IProps> = (props) => (
+const PrivateRoute: React.FC<IProps> = (props) => (
   <Route path={props.path} exact={!!props.exact} render={() => <PrivateRouteRenderWrapper children={props.children} />} />
 )
+
+export default PrivateRoute

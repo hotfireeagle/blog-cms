@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { AppContext } from './store/context'
-import { PrivateRoute } from './privateRoute'
+import PrivateRoute from './component/privateRoute/index'
 import { Menu } from './component/menu/index'
 import { Page404 } from './page/404'
 import { Login } from './page/login'
