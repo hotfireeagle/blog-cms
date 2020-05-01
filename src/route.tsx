@@ -11,7 +11,7 @@ import { ArticleList } from './page/articleList'
 
 export const AppRoute: React.FC<any> = () => {
   const appContext = useContext(AppContext)
-  
+
   const moduleMenu = appContext.appStore.menu
   const { showMenu } = moduleMenu
   return (
